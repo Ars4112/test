@@ -61,7 +61,7 @@ String.prototype.toJadenCase = function () {
 		let f = a[i].slice(0, 1).toUpperCase() + a[i].slice(1);
 		b.push(f);
 	}
-	console.log(b.join(" "));
+	
 	return b.join(" ");
 };
 
@@ -81,7 +81,24 @@ var isSquare = function (n) {
 
 isSquare(3);
 
+// задача 6
 
+function order(words){
+	let a = words.split(" ");
+	const f = {};
+	a = a.map((i)=> {
+		let num = parseInt(i.match(/\d+/));
+		f[num] = i;
+	})
+	const g = [];
+	for(let i in f) {
+		g.push(f[i]);
+	}
+	console.log(g.join(" "));
+	return g.join(" ")
+  }
+
+  order("is2 Thi1s T4est 3a")
 
 //   if ("testing" % 2 === 0) {
 // 	console.log("четный");
