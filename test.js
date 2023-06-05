@@ -131,13 +131,46 @@ function pigIt(str){
 		}
 		
 	}).join(" ");
-	console.log(s);
+	
   }
 
   pigIt('Pig latin is cool');
 
 
-  
+  //задача 9
+
+  // решение 1
+
+  function arrayDif(a, b) {
+	if (a.length === 0 || b.length === 0) {
+	  
+	  return a;
+	} else {
+	  return b.map((i)=> {
+		
+		return a.filter((j)=> i === j ? false : true)
+	  });
+	};
+	};
+
+	arrayDif([1,2], [1]);
+
+	// решение 2
+
+  function arrayDiff(a, b) {
+	if (a.length === 0 || b.length === 0) {
+	  return a;
+	} else {
+	  return a.reduce((result, current) => {
+		if (!b.includes(current)) {
+		  result.push(current);
+		}
+		return result;
+	  }, []);
+	}
+  }
+
+  arrayDiff([1,2], [1]);
 
 
 //   if ("testing" % 2 === 0) {
