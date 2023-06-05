@@ -119,6 +119,26 @@ var uniqueInOrder = function (iterable) {
 
 uniqueInOrder('AAAABBBCCDAABBB');
 
+// задача 8
+
+function pigIt(str){
+	let s = str.split(" ").map((i)=> {
+		if(i === "!" || i === "?" || i === "." || i === ",") {
+			console.log(i);
+			return i.slice(1) + i.slice(0, 1);
+		} else {
+			return i.slice(1) + i.slice(0, 1) + "ay";
+		}
+		
+	}).join(" ");
+	console.log(s);
+  }
+
+  pigIt('Pig latin is cool');
+
+
+  
+
 
 //   if ("testing" % 2 === 0) {
 // 	console.log("четный");
