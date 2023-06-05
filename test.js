@@ -109,69 +109,81 @@ var uniqueInOrder = function (iterable) {
 
 	let f = [iterable[0]];
 	for (let i = 1; i < iterable.length; i++) {
-		if (iterable[i] !== iterable[i-1]) {
+		if (iterable[i] !== iterable[i - 1]) {
 			f.push(iterable[i]);
-		} 
+		}
 	}
-	
-	return(f);
+
+	return f;
 };
 
-uniqueInOrder('AAAABBBCCDAABBB');
+uniqueInOrder("AAAABBBCCDAABBB");
 
 // задача 8
 
-function pigIt(str){
-	let s = str.split(" ").map((i)=> {
-		if(i === "!" || i === "?" || i === "." || i === ",") {
-			console.log(i);
-			return i.slice(1) + i.slice(0, 1);
-		} else {
-			return i.slice(1) + i.slice(0, 1) + "ay";
-		}
-		
-	}).join(" ");
-	
-  }
+function pigIt(str) {
+	let s = str
+		.split(" ")
+		.map((i) => {
+			if (i === "!" || i === "?" || i === "." || i === ",") {
+				console.log(i);
+				return i.slice(1) + i.slice(0, 1);
+			} else {
+				return i.slice(1) + i.slice(0, 1) + "ay";
+			}
+		})
+		.join(" ");
+}
 
-  pigIt('Pig latin is cool');
+pigIt("Pig latin is cool");
 
+//задача 9
 
-  //задача 9
+// решение 1
 
-  // решение 1
-
-  function arrayDif(a, b) {
+function arrayDif(a, b) {
 	if (a.length === 0 || b.length === 0) {
-	  
-	  return a;
+		return a;
 	} else {
-	  return b.map((i)=> {
-		
-		return a.filter((j)=> i === j ? false : true)
-	  });
-	};
-	};
-
-	arrayDif([1,2], [1]);
-
-	// решение 2
-
-  function arrayDiff(a, b) {
-	if (a.length === 0 || b.length === 0) {
-	  return a;
-	} else {
-	  return a.reduce((result, current) => {
-		if (!b.includes(current)) {
-		  result.push(current);
-		}
-		return result;
-	  }, []);
+		return b.map((i) => {
+			return a.filter((j) => (i === j ? false : true));
+		});
 	}
-  }
+}
 
-  arrayDiff([1,2], [1]);
+arrayDif([1, 2], [1]);
 
+// решение 2
+
+function arrayDiff(a, b) {
+	if (a.length === 0 || b.length === 0) {
+		return a;
+	} else {
+		return a.reduce((result, current) => {
+			if (!b.includes(current)) {
+				result.push(current);
+			}
+			return result;
+		}, []);
+	}
+}
+
+arrayDiff([1, 2], [1]);
+
+// задача 10
+
+function count(string) {
+	if (string === "" || !string) {
+		return {};
+	} else {
+		return [...string].reduce((a, b) => {
+			a[b] = (a[b] || 0) + 1;
+			return a;
+		}, {});
+	}
+}
+
+count("ABA");
 
 //   if ("testing" % 2 === 0) {
 // 	console.log("четный");
