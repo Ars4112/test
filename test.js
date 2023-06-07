@@ -185,6 +185,78 @@ function count(string) {
 
 count("ABA");
 
+// задача 11
+
+function high(x) {
+	const a = [
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+		"f",
+		"g",
+		"h",
+		"i",
+		"j",
+		"k",
+		"l",
+		"m",
+		"n",
+		"o",
+		"p",
+		"q",
+		"r",
+		"s",
+		"t",
+		"u",
+		"v",
+		"w",
+		"x",
+		"y",
+		"z",
+	];
+	const f = x.split(" ");
+
+	let lem = f.reduce((result, b) => {
+		const ss = [...b].map((el) => {
+			return a.indexOf(el, 0) + 1;
+		});
+
+		result.push(ss);
+
+		return result;
+	}, []);
+
+	lem = lem.map((i) => {
+		const sum = i.reduce((prev, current) => {
+			return prev + current;
+		}, 0);
+
+		return sum;
+	});
+
+	const max = Math.max.apply(null, lem);
+
+	const hh = f.map((i, index) => {
+		const object = {};
+		object.sum = lem[index];
+		object.string = i;
+
+		return object;
+	});
+
+	const dd = hh.find((i)=> {
+		return i.sum === max
+	})
+
+	console.log(dd.string);
+
+	return dd.string;
+}
+
+high('what time are we climbing up the volcano');
+
 //   if ("testing" % 2 === 0) {
 // 	console.log("четный");
 // } else {
