@@ -250,12 +250,31 @@ function high(x) {
 		return i.sum === max
 	})
 
-	console.log(dd.string);
-
 	return dd.string;
 }
 
+
 high('what time are we climbing up the volcano');
+
+// задача 12
+
+function spinWords(string){
+	const a = string.split(" ")
+	.map((i)=> [...i].reverse().join("")).join(" ")
+
+	console.log(a);
+	return a
+}
+
+spinWords("Hey fellow warriors")
+
+//задача 13
+
+function expandedForm(num) {
+	
+  }
+
+  expandedForm()
 
 //   if ("testing" % 2 === 0) {
 // 	console.log("четный");
