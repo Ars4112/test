@@ -246,35 +246,60 @@ function high(x) {
 		return object;
 	});
 
-	const dd = hh.find((i)=> {
-		return i.sum === max
-	})
+	const dd = hh.find((i) => {
+		return i.sum === max;
+	});
 
 	return dd.string;
 }
 
-
-high('what time are we climbing up the volcano');
+high("what time are we climbing up the volcano");
 
 // задача 12
 
-function spinWords(string){
-	const a = string.split(" ")
-	.map((i)=> [...i].reverse().join("")).join(" ")
+function spinWords(string) {
+	const a = string
+		.split(" ")
+		.map((i) => [...i].reverse().join(""))
+		.join(" ");
 
-	console.log(a);
-	return a
+	return a;
 }
 
-spinWords("Hey fellow warriors")
+spinWords("Hey fellow warriors");
 
 //задача 13
 
 function expandedForm(num) {
-	
-  }
+	let a = Array.from(String(num), Number);
 
-  expandedForm()
+	const b = a.slice(1).reduce((a, b) => a + b);
+	let ff = [];
+
+	if (a.length === 1 || b === 0) {
+		return num.toString();
+	}
+
+	a = a.map((i, index) => {
+			if (i !== 0) {
+				ff = [[i]];
+				for (let i = 0; i < a.length - (index + 1); i++) {
+					ff.push([0]);
+				}
+
+				console.log(ff.join(""));
+
+				return ff.join("");
+			}
+		})
+		.filter((i) => i !== undefined)
+		.join(" + ");
+
+	console.log(a);
+	return a;
+}
+
+expandedForm(12);
 
 //   if ("testing" % 2 === 0) {
 // 	console.log("четный");
