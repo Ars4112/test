@@ -280,29 +280,55 @@ function expandedForm(num) {
 		return num.toString();
 	}
 
-	a = a.map((i, index) => {
+	a = a
+		.map((i, index) => {
 			if (i !== 0) {
 				ff = [[i]];
 				for (let i = 0; i < a.length - (index + 1); i++) {
 					ff.push([0]);
 				}
-
-				console.log(ff.join(""));
-
 				return ff.join("");
 			}
 		})
 		.filter((i) => i !== undefined)
 		.join(" + ");
-
-	console.log(a);
 	return a;
 }
 
 expandedForm(12);
 
-//   if ("testing" % 2 === 0) {
-// 	console.log("четный");
-// } else {
-// 	console.log("не четный");
-// }
+//задача 14
+
+function merge(nums1, m, nums2, n) {
+	let a = 0;
+	for (let i = m; i < m + n; i++) {
+		nums1[i] = nums2[a++];
+	}
+	nums1.sort((a, b) => a - b);
+}
+
+merge([1], 1, [], 0);
+
+//задача 15
+
+function removeElement(nums, val) {
+	for (let i = 0; i < nums.length; i) {
+		if (nums[i] === val) nums.splice(i, 1);
+		else i++;
+	}
+}
+
+// function removeElement(nums, val) {
+// 	// console.time('test')
+//     let a = 0;
+// 	for(let i of nums) {
+// 		if(i !== val) {
+// 			nums[a++] = i;
+// 			console.log(a);
+// 		};
+// 	}
+// 	// console.timeEnd('test')
+// 	console.log(nums);
+// };
+
+removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
