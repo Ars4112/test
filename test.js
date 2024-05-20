@@ -332,3 +332,17 @@ function removeElement(nums, val) {
 // };
 
 removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
+
+function generateHashtag(str) {
+	const heshStr = str.split(" ").filter(i => i !== "");
+	if (str === "" || heshStr.length === 0 || heshStr.join("").length >= 140 || str === "#") return false;
+	const result = heshStr.map((i) => {
+			const firsLetter = i.slice(0, 1).toUpperCase();
+			const word = i.slice(1).toLowerCase();
+			return firsLetter + word;
+		})
+		.join("");
+	return `#${result}`;
+}
+
+generateHashtag("          ");
