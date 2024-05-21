@@ -345,4 +345,32 @@ function generateHashtag(str) {
 	return `#${result}`;
 }
 
-generateHashtag("          ");
+// generateHashtag("          ");
+
+
+function rot13(message){
+	const alfabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+	let result = []
+	let upperCase
+
+	message.split("").map(i => {
+		if (i === i.toUpperCase()) upperCase = true;
+			else upperCase = false;
+		if(!/[A-Za-z]/.test(i)) result.push(i)
+			else alfabet.forEach((j, index) => {
+			if(i.toLowerCase() === j) {
+			if(index + 13 > alfabet.length - 1){ 
+				if(upperCase) result.push(alfabet[index + 12 - (alfabet.length - 1)].toUpperCase())
+				 else result.push(alfabet[index + 12 - (alfabet.length - 1)])
+
+			} else if(upperCase) result.push(alfabet[index + 13].toUpperCase())
+				   else result.push(alfabet[index + 13])
+		} else return;	
+		})
+		console.log(result.join(""));
+		return result
+	})
+	return result.join("")
+  }
+
+  rot13("test")
