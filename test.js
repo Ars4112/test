@@ -334,9 +334,16 @@ function removeElement(nums, val) {
 removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
 
 function generateHashtag(str) {
-	const heshStr = str.split(" ").filter(i => i !== "");
-	if (str === "" || heshStr.length === 0 || heshStr.join("").length >= 140 || str === "#") return false;
-	const result = heshStr.map((i) => {
+	const heshStr = str.split(" ").filter((i) => i !== "");
+	if (
+		str === "" ||
+		heshStr.length === 0 ||
+		heshStr.join("").length >= 140 ||
+		str === "#"
+	)
+		return false;
+	const result = heshStr
+		.map((i) => {
 			const firsLetter = i.slice(0, 1).toUpperCase();
 			const word = i.slice(1).toLowerCase();
 			return firsLetter + word;
@@ -347,30 +354,81 @@ function generateHashtag(str) {
 
 // generateHashtag("          ");
 
+function rot13(message) {
+	const alfabet = [
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+		"f",
+		"g",
+		"h",
+		"i",
+		"j",
+		"k",
+		"l",
+		"m",
+		"n",
+		"o",
+		"p",
+		"q",
+		"r",
+		"s",
+		"t",
+		"u",
+		"v",
+		"w",
+		"x",
+		"y",
+		"z",
+	];
+	let result = [];
+	let upperCase;
 
-function rot13(message){
-	const alfabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-	let result = []
-	let upperCase
-
-	message.split("").map(i => {
+	message.split("").map((i) => {
 		if (i === i.toUpperCase()) upperCase = true;
-			else upperCase = false;
-		if(!/[A-Za-z]/.test(i)) result.push(i)
-			else alfabet.forEach((j, index) => {
-			if(i.toLowerCase() === j) {
-			if(index + 13 > alfabet.length - 1){ 
-				if(upperCase) result.push(alfabet[index + 12 - (alfabet.length - 1)].toUpperCase())
-				 else result.push(alfabet[index + 12 - (alfabet.length - 1)])
-
-			} else if(upperCase) result.push(alfabet[index + 13].toUpperCase())
-				   else result.push(alfabet[index + 13])
-		} else return;	
-		})
+		else upperCase = false;
+		if (!/[A-Za-z]/.test(i)) result.push(i);
+		else
+			alfabet.forEach((j, index) => {
+				if (i.toLowerCase() === j) {
+					if (index + 13 > alfabet.length - 1) {
+						if (upperCase)
+							result.push(
+								alfabet[index + 12 - (alfabet.length - 1)].toUpperCase()
+							);
+						else result.push(alfabet[index + 12 - (alfabet.length - 1)]);
+					} else if (upperCase) result.push(alfabet[index + 13].toUpperCase());
+					else result.push(alfabet[index + 13]);
+				} else return;
+			});
 		console.log(result.join(""));
-		return result
-	})
-	return result.join("")
-  }
+		return result;
+	});
+	return result.join("");
+}
 
-  rot13("test")
+//   rot13("test")
+
+// function moveZeros(arr) {
+// 	let b = [];
+// 	let v = [];
+// 	arr.forEach((i) => {
+// 		if (i === 0) {
+// 			v.push(i);
+// 			return;
+// 		}
+// 		b.push(i);
+// 	});
+// 	v.forEach((i) => {
+// 		b.push(i);
+// 	});
+
+// 	return b;
+// }
+function moveZeros(arr) {
+	const a = arr.sort((a, b) => b === 0 ? -1 : 0);
+	console.log(a);
+  }
+moveZeros([0,false, 1, 0, 1, 2, 0, 1, 3, "a"]);
