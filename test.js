@@ -486,3 +486,22 @@ function countRedBeads(num) {
 }
 
 // countRedBeads(5);
+
+function findSmallestInt(arr) {
+	arr.reduce((acc, item) => {
+		if (acc < item) return acc;
+		else return item;
+	});
+}
+
+// findSmallestInt([34, -345, -1, 100]);
+
+const countSheep = function (num) {
+	let a = "";
+	for (let i = 1; i <= num; i++) {
+		a = a + `${i} sheep...`;
+	}
+	return a;
+};
+
+// countSheep(3);
