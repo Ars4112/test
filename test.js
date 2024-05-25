@@ -451,20 +451,6 @@ function findOdd(A) {
 
 // findOdd([1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1]);
 
-// const arr = [1, 4, 2, 9, 4, 3, 8];
-// let a = 0
-// for (let i = 0; i < arr.length; i++) {
-// 	if(arr[i] > a) a = arr[i];
-// }
-
-// function rotateMatrix(matrix) {
-// 	const c = []
-// 	c.push([matrix[0][0], matrix[1][0]])
-// 	c.push([matrix[0][1], matrix[1][1]])
-// 	c.push([matrix[0][2], matrix[1][2]])
-// 	console.log(c);
-// }
-
 // function rotateMatrix(matrix) {
 // 	const flippedArray = [];
 // 	for (let i = 0; i < matrix[0].length; i++) {
@@ -482,14 +468,21 @@ function findOdd(A) {
 function rotateMatrix(arr) {
 	const a = arr[0].reduce((acc, item, index) => {
 		const b = arr.map((i) => i[index]);
-		acc.push(b)
+		acc.push(b);
 		return acc;
 	}, []);
 
 	console.log(a);
 }
 
-rotateMatrix([
-	[-1, 4, 5],
-	[2, 3, 4],
-]);
+// rotateMatrix([
+// 	[-1, 4, 5],
+// 	[2, 3, 4],
+// ]);
+
+function countRedBeads(num) {
+	if (num < 2) return 0;
+	return num + num - 2;
+}
+
+// countRedBeads(5);
