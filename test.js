@@ -4,7 +4,7 @@ function createPhoneNumber(numbers) {
 	return `(${numbers[0]}${numbers[1]}${numbers[2]}) ${numbers[3]}${numbers[4]}${numbers[5]}-${numbers[6]}${numbers[7]}${numbers[8]}${numbers[9]}`;
 }
 
-createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+// createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
 
 // задача 2
 
@@ -30,14 +30,14 @@ function findOutlier(integers) {
 	}
 }
 
-findOutlier([
-	-113582900, -29045906, -125604608, -109716726, -114278168, -187523460,
-	128668112, 148825362, 779750, -61041354, 57091974, -33534710, 132343032,
-	-145886106, 61507670, -59819372, -86740078, 64839780, 187040192, 41173828,
-	-36759138, 154466920, -48471598, 123072640, -63082695, -63562832, -6094004,
-	-129318380, -99239346, 62699116, 150482084, 71079870, 15101804, -63754346,
-	173197232, 127993080, -85461356,
-]);
+// findOutlier([
+// 	-113582900, -29045906, -125604608, -109716726, -114278168, -187523460,
+// 	128668112, 148825362, 779750, -61041354, 57091974, -33534710, 132343032,
+// 	-145886106, 61507670, -59819372, -86740078, 64839780, 187040192, 41173828,
+// 	-36759138, 154466920, -48471598, 123072640, -63082695, -63562832, -6094004,
+// 	-129318380, -99239346, 62699116, 150482084, 71079870, 15101804, -63754346,
+// 	173197232, 127993080, -85461356,
+// ]);
 
 //   задача 3
 
@@ -50,7 +50,7 @@ function getMiddle(s) {
 	return arr.join("");
 }
 
-getMiddle("middle");
+// getMiddle("middle");
 
 // задача 4
 
@@ -65,7 +65,7 @@ String.prototype.toJadenCase = function () {
 	return b.join(" ");
 };
 
-"How can mirrors be real if our eyes aren't real".toJadenCase();
+// "How can mirrors be real if our eyes aren't real".toJadenCase();
 
 //   задача 5
 
@@ -79,7 +79,7 @@ var isSquare = function (n) {
 	}
 };
 
-isSquare(3);
+// isSquare(3);
 
 // задача 6
 
@@ -98,7 +98,7 @@ function order(words) {
 	return g.join(" ");
 }
 
-order("is2 Thi1s T4est 3a");
+// order("is2 Thi1s T4est 3a");
 
 //   задача 7
 
@@ -117,7 +117,7 @@ var uniqueInOrder = function (iterable) {
 	return f;
 };
 
-uniqueInOrder("AAAABBBCCDAABBB");
+// uniqueInOrder("AAAABBBCCDAABBB");
 
 // задача 8
 
@@ -135,7 +135,7 @@ function pigIt(str) {
 		.join(" ");
 }
 
-pigIt("Pig latin is cool");
+// pigIt("Pig latin is cool");
 
 //задача 9
 
@@ -151,7 +151,7 @@ function arrayDif(a, b) {
 	}
 }
 
-arrayDif([1, 2], [1]);
+// arrayDif([1, 2], [1]);
 
 // решение 2
 
@@ -168,7 +168,7 @@ function arrayDiff(a, b) {
 	}
 }
 
-arrayDiff([1, 2], [1]);
+// arrayDiff([1, 2], [1]);
 
 // задача 10
 
@@ -183,7 +183,7 @@ function count(string) {
 	}
 }
 
-count("ABA");
+// count("ABA");
 
 // задача 11
 
@@ -253,7 +253,7 @@ function high(x) {
 	return dd.string;
 }
 
-high("what time are we climbing up the volcano");
+// high("what time are we climbing up the volcano");
 
 // задача 12
 
@@ -331,7 +331,9 @@ function removeElement(nums, val) {
 // 	console.log(nums);
 // };
 
-removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
+// removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2);
+
+//      задача 16
 
 function generateHashtag(str) {
 	const heshStr = str.split(" ").filter((i) => i !== "");
@@ -353,6 +355,8 @@ function generateHashtag(str) {
 }
 
 // generateHashtag("          ");
+
+//      задача 17
 
 function rot13(message) {
 	const alfabet = [
@@ -411,24 +415,81 @@ function rot13(message) {
 
 //   rot13("test")
 
-// function moveZeros(arr) {
-// 	let b = [];
-// 	let v = [];
-// 	arr.forEach((i) => {
-// 		if (i === 0) {
-// 			v.push(i);
-// 			return;
-// 		}
-// 		b.push(i);
-// 	});
-// 	v.forEach((i) => {
-// 		b.push(i);
-// 	});
+//      задача 18
 
-// 	return b;
-// }
 function moveZeros(arr) {
-	const a = arr.sort((a, b) => b === 0 ? -1 : 0);
+	let b = [];
+	let v = [];
+	arr.forEach((i) => {
+		if (i === 0) {
+			v.push(i);
+			return;
+		}
+		b.push(i);
+	});
+	v.forEach((i) => {
+		b.push(i);
+	});
+
+	return b;
+}
+
+// moveZeros([0,false, 1, 0, 1, 2, 0, 1, 3, "a"]);
+
+//      задача 19
+
+function findOdd(A) {
+	const f = A.reduce((a, b) => {
+		if (a[b]) a[b]++;
+		else a[b] = 1;
+		return a;
+	}, {});
+	for (let i in f) {
+		if (f[i] % 2 === 1) return [+i];
+	}
+}
+
+// findOdd([1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1]);
+
+// const arr = [1, 4, 2, 9, 4, 3, 8];
+// let a = 0
+// for (let i = 0; i < arr.length; i++) {
+// 	if(arr[i] > a) a = arr[i];
+// }
+
+// function rotateMatrix(matrix) {
+// 	const c = []
+// 	c.push([matrix[0][0], matrix[1][0]])
+// 	c.push([matrix[0][1], matrix[1][1]])
+// 	c.push([matrix[0][2], matrix[1][2]])
+// 	console.log(c);
+// }
+
+// function rotateMatrix(matrix) {
+// 	const flippedArray = [];
+// 	for (let i = 0; i < matrix[0].length; i++) {
+// 		const column = [];
+// 		for (let j = 0; j < matrix.length; j++) {
+// 			column.push(matrix[j][i]);
+// 		}
+// 		flippedArray.push(column);
+// 	}
+
+// 	console.log(flippedArray);
+// 	return flippedArray;
+// }
+
+function rotateMatrix(arr) {
+	const a = arr[0].reduce((acc, item, index) => {
+		const b = arr.map((i) => i[index]);
+		acc.push(b)
+		return acc;
+	}, []);
+
 	console.log(a);
-  }
-moveZeros([0,false, 1, 0, 1, 2, 0, 1, 3, "a"]);
+}
+
+rotateMatrix([
+	[-1, 4, 5],
+	[2, 3, 4],
+]);
