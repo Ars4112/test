@@ -505,3 +505,52 @@ const countSheep = function (num) {
 };
 
 // countSheep(3);
+
+function isItLetter(character) {
+	const a = character.charCodeAt();
+	if ((a >= 65 && a <= 90) || (a >= 97 && a <= 122)) console.log(true);
+	else console.log(false);
+}
+
+// isItLetter("1");
+
+function rpsls(pl1, pl2) {
+	if (pl1 === pl2) return "Draw!";
+	if (pl1 === "rock") {
+		if (pl2 === "lizard" || pl2 === "scissors") return "Player 1 Won!";
+		else return "Player 2 Won!";
+	}
+
+	if (pl1 === "lizard") {
+		if (pl2 === "spock" || pl2 === "paper") return "Player 1 Won!";
+		else return "Player 2 Won!";
+	}
+
+	if (pl1 === "paper") {
+		if (pl2 === "rock" || pl2 === "spock") return "Player 1 Won!";
+		else return "Player 2 Won!";
+	}
+
+	if (pl1 === "spock") {
+		if (pl2 === "rock" || pl2 === "scissors") return "Player 1 Won!";
+		else return "Player 2 Won!";
+	}
+
+	if (pl1 === "scissors") {
+		if (pl2 === "paper" || pl2 === "lizard") return "Player 1 Won!";
+		else return "Player 2 Won!";
+	}
+}
+
+// rpsls("rock", "rock");
+
+function firstNSmallest(array, n) {
+	while (array.length !== n) {
+		array.splice([...array].lastIndexOf(Math.max(...array)), 1)
+	}
+	return array
+}
+
+// firstNSmallest([-3, 7, 0, 3, -3, 10, 0, 0, 2, 10, -6, 2, -9, 0, 5, 5, -1, -3] , 3);
+// [-3, -6, -9]
+// [-6, -9, -3]
