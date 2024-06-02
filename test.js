@@ -465,6 +465,8 @@ function findOdd(A) {
 // 	return flippedArray;
 // }
 
+//      задача 20
+
 function rotateMatrix(arr) {
 	const a = arr[0].reduce((acc, item, index) => {
 		const b = arr.map((i) => i[index]);
@@ -480,12 +482,16 @@ function rotateMatrix(arr) {
 // 	[2, 3, 4],
 // ]);
 
+//      задача 21
+
 function countRedBeads(num) {
 	if (num < 2) return 0;
 	return num + num - 2;
 }
 
 // countRedBeads(5);
+
+//      задача 22
 
 function findSmallestInt(arr) {
 	arr.reduce((acc, item) => {
@@ -495,6 +501,8 @@ function findSmallestInt(arr) {
 }
 
 // findSmallestInt([34, -345, -1, 100]);
+
+//      задача 23
 
 const countSheep = function (num) {
 	let a = "";
@@ -506,6 +514,8 @@ const countSheep = function (num) {
 
 // countSheep(3);
 
+//      задача 24
+
 function isItLetter(character) {
 	const a = character.charCodeAt();
 	if ((a >= 65 && a <= 90) || (a >= 97 && a <= 122)) console.log(true);
@@ -513,6 +523,8 @@ function isItLetter(character) {
 }
 
 // isItLetter("1");
+
+//      задача 25
 
 function rpsls(pl1, pl2) {
 	if (pl1 === pl2) return "Draw!";
@@ -544,13 +556,79 @@ function rpsls(pl1, pl2) {
 
 // rpsls("rock", "rock");
 
+//      задача 26
+
 function firstNSmallest(array, n) {
 	while (array.length !== n) {
-		array.splice([...array].lastIndexOf(Math.max(...array)), 1)
+		array.splice([...array].lastIndexOf(Math.max(...array)), 1);
 	}
-	return array
+	return array;
 }
 
 // firstNSmallest([-3, 7, 0, 3, -3, 10, 0, 0, 2, 10, -6, 2, -9, 0, 5, 5, -1, -3] , 3);
 // [-3, -6, -9]
 // [-6, -9, -3]
+
+function evenOrOdd(number) {
+	if (number % 2 !== 1 && number % 2 !== -1) return "Even";
+	else return "Odd";
+}
+// evenOrOdd(0);
+
+function getCount(str) {
+	const a = ["a", "e", "i", "o", "u"];
+
+	return str.split("").reduce((acc, item) => {
+		if (a.includes(item)) acc++;
+		return acc;
+	}, 0);
+}
+
+// getCount("abracadabra");
+
+function cookingTime(neededPower, minutes, seconds, power) {
+	const np = parseInt(neededPower);
+	const p = parseInt(power);
+	const s = (60 * minutes + seconds) / (p / np);
+	let min = Math.floor(s / 60);
+	let second = Math.ceil(s - 60 * min);
+	if (second === 60) {
+		min++;
+		second = 0;
+	}
+	console.log(195 % 60);
+	return `${min} minutes ${second} seconds`;
+}
+
+// cookingTime("450W", 3, 25, "950W");
+
+function sorter(textbooks) {
+	return textbooks.sort((a, b) => {
+		if (a.toLowerCase() < b.toLowerCase()) return -1;
+		if (a.toLowerCase() > b.toLowerCase()) return 1;
+		return 0;
+	});
+}
+
+// console.log(sorter(['Alg#bra', '$istory', 'Geom^try', '**english']));
+
+// 1. Разделите большее число (72) на меньшее (15).
+// 2. Найдите остаток от деления (72 % 15 = 12).
+// 3. Разделите предыдущее делимое (15) на остаток (15 % 12 = 3).
+// 4. Найдите остаток от деления (12 % 3 = 0).
+// 5. Последний ненулевой остаток (в данном случае 3) является наибольшим общим делителем (НОД) чисел 15 и 72.
+
+function relativelyPrime(n, l) {
+	return l.filter((i) => {
+		let a;
+		if (n < i) a = (i % n) % (n / (i % n));
+		if (n > i) a = (n % i) % (i / (n % i));
+		return n % a == 0;
+	});
+}
+
+console.log(relativelyPrime(8, [1, 2, 3, 4, 5, 6, 7]));
+[1, 3, 5, 7];
+
+
+console.log((8 % 6) % (6 % (8 % 6)));
