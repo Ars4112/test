@@ -610,25 +610,70 @@ function sorter(textbooks) {
 	});
 }
 
-// console.log(sorter(['Alg#bra', '$istory', 'Geom^try', '**english']));
+// console.log(sorter(['Alg#bra', '$istory', 'Geom^try', '**english']))
 
-// 1. Разделите большее число (72) на меньшее (15).
-// 2. Найдите остаток от деления (72 % 15 = 12).
-// 3. Разделите предыдущее делимое (15) на остаток (15 % 12 = 3).
-// 4. Найдите остаток от деления (12 % 3 = 0).
-// 5. Последний ненулевой остаток (в данном случае 3) является наибольшим общим делителем (НОД) чисел 15 и 72.
+function invert(array) {
+	return array.map((i) => i * -1);
+}
 
-function relativelyPrime(n, l) {
-	return l.filter((i) => {
-		let a;
-		if (n < i) a = (i % n) % (n / (i % n));
-		if (n > i) a = (n % i) % (i / (n % i));
-		return n % a == 0;
+// console.log(invert([1, -2, 3, 4, 5]));
+
+function differenceInAges(ages) {
+	return [
+		Math.max(...ages),
+		Math.min(...ages),
+		Math.max(...ages) - Math.min(...ages),
+	];
+}
+
+// console.log(differenceInAges([82, 15, 6, 38, 35]));
+
+function arrayPlusArray(arr1, arr2) {
+	return arr1.concat(arr2).reduce((acc, item) => {
+		return acc + item;
 	});
 }
 
-console.log(relativelyPrime(8, [1, 2, 3, 4, 5, 6, 7]));
-[1, 3, 5, 7];
+//   console.log(arrayPlusArray([1, 2, 3], [4, 5, 6]));
+
+function greet(name) {
+	if (name === "Johnny") return "Hello, my love!";
+	return "Hello, " + name + "!";
+}
+
+// console.log(greet("Johnny"));
+
+function getPlanetName(id){
+	var name;
+	switch(id){
+	  case 1:
+		name = 'Mercury'
+		break;
+	  case 2:
+		name = 'Venus'
+		break;
+	  case 3:
+		name = 'Earth'
+		break;
+	  case 4:
+		name = 'Mars'
+		break;
+	  case 5:
+		name = 'Jupiter'
+		break;
+	  case 6:
+		name = 'Saturn'
+		break;
+	  case 7:
+		name = 'Uranus'
+		break;
+	  case 8:
+		name = 'Neptune'
+		break;
+	}
+	
+	return name;
+  }
 
 
-console.log((8 % 6) % (6 % (8 % 6)));
+//   console.log(getPlanetName(5));
