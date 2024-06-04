@@ -643,37 +643,42 @@ function greet(name) {
 
 // console.log(greet("Johnny"));
 
-function getPlanetName(id){
+function getPlanetName(id) {
 	var name;
-	switch(id){
-	  case 1:
-		name = 'Mercury'
-		break;
-	  case 2:
-		name = 'Venus'
-		break;
-	  case 3:
-		name = 'Earth'
-		break;
-	  case 4:
-		name = 'Mars'
-		break;
-	  case 5:
-		name = 'Jupiter'
-		break;
-	  case 6:
-		name = 'Saturn'
-		break;
-	  case 7:
-		name = 'Uranus'
-		break;
-	  case 8:
-		name = 'Neptune'
-		break;
+	switch (id) {
+		case 1:
+			name = "Mercury";
+			break;
+		case 2:
+			name = "Venus";
+			break;
+		case 3:
+			name = "Earth";
+			break;
+		case 4:
+			name = "Mars";
+			break;
+		case 5:
+			name = "Jupiter";
+			break;
+		case 6:
+			name = "Saturn";
+			break;
+		case 7:
+			name = "Uranus";
+			break;
+		case 8:
+			name = "Neptune";
+			break;
 	}
-	
-	return name;
-  }
 
+	return name;
+}
 
 //   console.log(getPlanetName(5));
+
+function divCon(x) {
+	return x.reduce((acc, item) => typeof item === "string" ? acc - Number(item) : acc += item, 0);
+}
+
+console.log(divCon(["7", 1]));
