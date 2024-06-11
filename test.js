@@ -473,8 +473,6 @@ function rotateMatrix(arr) {
 		acc.push(b);
 		return acc;
 	}, []);
-
-	console.log(a);
 }
 
 // rotateMatrix([
@@ -678,7 +676,76 @@ function getPlanetName(id) {
 //   console.log(getPlanetName(5));
 
 function divCon(x) {
-	return x.reduce((acc, item) => typeof item === "string" ? acc - Number(item) : acc += item, 0);
+	return x.reduce(
+		(acc, item) =>
+			typeof item === "string" ? acc - Number(item) : (acc += item),
+		0
+	);
 }
 
-console.log(divCon(["7", 1]));
+// console.log(divCon(["7", 1]));
+
+class List {
+	constructor(type) {
+		this.type = type;
+		this.items = [];
+		this.count = 0;
+	}
+
+	add(item) {
+		if (typeof item !== this.type)
+			return `This item is not of type: ${this.type}`;
+
+		this.items.push(item);
+		this.count++;
+		return this;
+	}
+}
+// const a = new List("string");
+// console.log(a.add("shshs").count);
+
+function quotable(name, quote) {
+	return `${name} said: "${quote}"`;
+}
+
+//   console.log(quotable("dfd", "dgdgdgdgdgd"));
+
+function correctTail(body, tail) {
+	sub = body.substr(body.length - 1);
+
+	if (sub === tail) return true;
+	else return false;
+}
+
+// console.log(correctTail("Fox", "x"));
+
+function howManyDalmations(number) {
+	var dogs = [
+		"Hardly any",
+		"More than a handful!",
+		"Woah that's a lot of dogs!",
+		"101 DALMATIONS!!!",
+	];
+
+	var respond =
+		number <= 10
+			? dogs[0]
+			: number <= 50
+			? dogs[1]
+			: (number = 101 ? dogs[3] : dogs[2]);
+
+	return respond;
+}
+
+// console.log(howManyDalmations(10));
+
+/[A-Za-z]/
+
+function validate(username, password){
+	if(/[^A-Za-z$]/g.test(password)) return 'Wrong username or password!';
+	// var database = new Database();
+	// return database.login(username, password);
+	return
+  }
+
+  console.log(validate('Timmy','assword2'));
