@@ -739,13 +739,292 @@ function howManyDalmations(number) {
 
 // console.log(howManyDalmations(10));
 
-/[A-Za-z]/
+/[A-Za-z]/;
 
-function validate(username, password){
-	if(/[^A-Za-z$]/g.test(password)) return 'Wrong username or password!';
+function validate(username, password) {
+	if (/[^A-Za-z$]/g.test(password)) return "Wrong username or password!";
 	// var database = new Database();
 	// return database.login(username, password);
-	return
+	return;
+}
+
+//
+
+function deleteValues(array, pred) {
+	for (var i = 0; i < array.length; i++) {
+		// debugger
+		if (pred(array[i])) {
+			array.splice(i, 1);
+			i--;
+		}
+	}
+	return array;
+}
+
+function isEven(n) {
+	return n % 2 === 0;
+}
+
+//   console.log(deleteValues([1,3,2,4,5,7,6,8,10,9], isEven));
+
+function calculate(a, o, b) {
+	var result = null;
+
+	if (o === "+") {
+		result = a + b;
+	}
+	if (o === "-") {
+		result = a - b;
+	}
+	if (o === "/" && b !== 0) {
+		result = a / b;
+	}
+	if (o === "*") {
+		result = a * b;
+	}
+
+	return result;
+}
+
+// console.log(calculate(4,"/",0));
+
+function twoSum(numbers, target) {
+	const num = [];
+	numbers.forEach((el, index) => {
+		if (num.length === 0) {
+			for (let i = 1; i <= numbers.length - 1; i++) {
+				if (index === i) continue;
+				if (el + numbers[i] === target) {
+					return num.push(index, i);
+				}
+			}
+		}
+	});
+	return num;
+}
+
+// console.log(twoSum([3, 2, 4], 6));
+
+function diamond(n) {
+	if (n % 2 === 0 || n < 0) return null;
+	let str = "";
+
+	let spaces = Math.floor(n / 2);
+
+	for (let i = 0, count = 0; i < n; i) {
+		if (i < 0) break;
+		str += " ".repeat(spaces);
+		for (let j = 0; j <= i; j++) {
+			str += "*";
+		}
+		str += "\n";
+		count += 2;
+		n > count ? (i += 2) : (i -= 2);
+		n > count ? spaces-- : spaces++;
+	}
+	return str;
+}
+
+// console.log(diamond(7));
+
+// const student = {
+// 	name: "Anastasiya2222",
+// };
+
+// const newStudent = student;
+
+// const myFriend = {
+// 	...newStudent,
+// };
+
+// const newUser = {
+// 	name: "Anastasiya11111",
+// };
+
+// const myFriendName =
+// 	student.name !== myFriend.name ? newUser.name : student.name;
+
+//   console.log(myFriendName);
+
+/*Какое значение получит переменная "myFriendName"?*/
+
+obfuscate = function (email) {
+	return email.replaceAll(".", " [dot] ").replaceAll("@", " [at] ");
+};
+
+//   console.log(obfuscate("jim.kuback@ennerman-hatano.com"));
+
+function getNote(pitch) {
+	const notesDictionary = {
+		440: "A",
+		466.16: "A#",
+		493.88: "B",
+		523.25: "C",
+		554.37: "C#",
+		587.33: "D",
+		622.25: "D#",
+		659.25: "E",
+		698.46: "F",
+		739.99: "F#",
+		783.99: "G",
+		830.61: "G#",
+	};
+	let a = pitch;
+	const arrayKeys = Object.keys(notesDictionary);
+	if (a > 830) {
+		arrayKeys.forEach((i) => {
+			if (pitch % i === 0) a = i;
+		});
+	}
+	if (a < 440) {
+		arrayKeys.forEach((i) => {
+			if (i % pitch === 0) a = i;
+		});
+	}
+	return notesDictionary[a];
+}
+
+// console.log(getNote(220));
+
+function solution(number) {
+	let result = 0;
+
+	if (number < 0) return result;
+
+	for (let i = 1; i < number; i++) {
+		if (i % 3 === 0 || i % 5 === 0) result += i;
+	}
+	return result;
+}
+
+// console.log(solution(-1));
+
+function disemvowel(str) {
+	return str.replaceAll(/[euioa]/gi, "");
+}
+
+// console.log(disemvowel("This website is for losers LOL!"));
+
+function spinWords(string) {
+	const a = string
+		.split(" ")
+		.map((i) => {
+			if (i.length >= 5) return [...i].reverse().join("");
+			return i;
+		})
+		.join(" ");
+	return a;
+}
+
+// console.log(spinWords("Hey fellow warriors"));
+
+function squareDigits(num) {
+	return +Array.from(String(num), Number)
+		.map((i) => Math.pow(i, 2))
+		.join("");
+}
+
+// console.log(squareDigits(9119));
+
+function likes(names) {
+	if (names.length === 0) return "no one likes this";
+	if (names.length === 1) return names[0] + " likes this";
+	if (names.length === 2) return names[0] + " and " + names[1] + " like this";
+	if (names.length === 3)
+		return names[0] + ", " + names[1] + " and " + names[2] + " like this";
+	if (names.length > 3)
+		return (
+			names[0] +
+			", " +
+			names[1] +
+			" and " +
+			String(names.length - 2) +
+			" others " +
+			" like this"
+		);
+}
+
+// console.log(likes(["Peter", "fghfghg", "mnmmnnbmnb", "hjh"]));
+
+function digitalRoot(n) {
+	const sum = Array.from(String(n), Number).reduce((acc, curr) => {
+		return acc + curr;
+	}, 0);
+
+	if (sum > 10) {
+		return digitalRoot(sum);
+	}
+
+	return sum;
+}
+
+// console.log(digitalRoot(6));
+
+function highAndLow(numbers) {
+	return (
+		Math.max(...numbers.split(" ")) + " " + Math.min(...numbers.split(" "))
+	);
+}
+
+// console.log(highAndLow("2 6 9"));
+
+function as(array) {
+	for (let j = 0; j < array.length - 1; j++) {
+		for (let i = 0; i < array.length - 1 - j; i++) {
+			if (array[i] <= array[i + 1]) {
+				[array[i + 1], array[i]] = [array[i], array[i + 1]];
+			}
+		}
+	}
+
+	return array;
+}
+
+function minmax(array) {
+	let a = 0;
+	array.forEach((i) => {
+		if (a < i) a = i;
+	});
+	return a;
+}
+
+// console.log(minmax([100, -1, -5, 3, 101, 0, 8, 6]));
+
+Array.prototype.myFilter = function (params) {
+	let a ;
+	for (let i = 0; i < this.length; i++) {
+		if (params(this[i])) {
+			a = this[i];
+			break
+		}
+	}
+	return a;
+};
+// console.log([1, 2, 3, 4, 5, 6].myFilter((i) => i !== 1));
+
+function descendingOrder(n){
+	return Array.from(String(n), Number).sort((a, b)=> b-a).join("")
   }
 
-  console.log(validate('Timmy','assword2'));
+//   console.log(descendingOrder(42145));
+
+function positiveSum(arr) {
+  return arr.reduce((acc, item) => {
+	if(item >= 0) return acc + item
+	return acc
+  }, 0)
+}
+
+// console.log(positiveSum([-1,2,3,4,5]));
+
+function filter_list(l) {
+	return l.filter(i => typeof i === "number")
+  }
+
+//   console.log(filter_list([1,2,'aasf','1','123',123]));
+
+function accum(s) {
+	return s.split("").map((i, index)=> i.toUpperCase() + i.repeat(index)).join("-")
+}
+
+// console.log(accum("abcd"));
