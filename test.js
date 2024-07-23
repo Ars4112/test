@@ -991,40 +991,169 @@ function minmax(array) {
 // console.log(minmax([100, -1, -5, 3, 101, 0, 8, 6]));
 
 Array.prototype.myFilter = function (params) {
-	let a ;
+	let a;
 	for (let i = 0; i < this.length; i++) {
 		if (params(this[i])) {
 			a = this[i];
-			break
+			break;
 		}
 	}
 	return a;
 };
 // console.log([1, 2, 3, 4, 5, 6].myFilter((i) => i !== 1));
 
-function descendingOrder(n){
-	return Array.from(String(n), Number).sort((a, b)=> b-a).join("")
-  }
+function descendingOrder(n) {
+	return Array.from(String(n), Number)
+		.sort((a, b) => b - a)
+		.join("");
+}
 
 //   console.log(descendingOrder(42145));
 
 function positiveSum(arr) {
-  return arr.reduce((acc, item) => {
-	if(item >= 0) return acc + item
-	return acc
-  }, 0)
+	return arr.reduce((acc, item) => {
+		if (item >= 0) return acc + item;
+		return acc;
+	}, 0);
 }
 
 // console.log(positiveSum([-1,2,3,4,5]));
 
 function filter_list(l) {
-	return l.filter(i => typeof i === "number")
-  }
+	return l.filter((i) => typeof i === "number");
+}
 
 //   console.log(filter_list([1,2,'aasf','1','123',123]));
 
 function accum(s) {
-	return s.split("").map((i, index)=> i.toUpperCase() + i.repeat(index)).join("-")
+	return s
+		.split("")
+		.map((i, index) => i.toUpperCase() + i.repeat(index))
+		.join("-");
 }
 
 // console.log(accum("abcd"));
+
+function isIsogram(str) {
+	return new Set(str.toLowerCase()).size === str.lengt ? true : false;
+}
+
+// console.log(isIsogram("moOse"));
+
+function findOutlier(integers) {
+	let even = integers.filter((i) => i % 2);
+	let odd = integers.filter((i) => !(i % 2));
+	if (even.length === 1) return even[0];
+	else return odd[0];
+}
+
+// console.log(findOutlier([1, 5, 7, 3, 9, 4]));
+
+function duplicateCount(text) {
+	const obj = {};
+	const array = text.split("");
+	for (let i = 0; i < array.length; i++) {
+		if (obj[array[i]]) obj[array[i]]++;
+		else obj[array[i]] = 1;
+	}
+	return Object.values(obj).filter((i) => i > 1).length;
+}
+
+// console.log(duplicateCount("Indivisibility"));
+
+function XO(str) {
+	let x = 0;
+	let o = 0;
+	str
+		.toLowerCase()
+		.split("")
+		.forEach((i) => {
+			if (i === "x") x += 1;
+			if (i === "o") o += 1;
+		});
+
+	return x === o;
+}
+
+// console.log(XO("xxxm"));
+
+function duplicateEncode(word) {
+	const wordArray = word.toLowerCase().split("");
+	const countLetter = wordArray.reduce((acc, item) => {
+		if (acc[item]) acc[item]++;
+		else acc[item] = 1;
+		return acc;
+	}, {});
+
+	const repeatLetterArray = Object.keys(countLetter).filter(
+		(i) => countLetter[i] > 1
+	);
+
+	return wordArray.reduce((acc, item) => {
+		if (repeatLetterArray.includes(item)) acc += ")";
+		else acc += "(";
+		return acc;
+	}, "");
+}
+
+// function duplicateEncode(word) {
+// 	var unique = "";
+// 	word = word.toLowerCase();
+// 	for (var i = 0; i < word.length; i++) {
+// 		debugger
+// 		const element = word[i]
+// 		const index = word.indexOf(element)
+// 		const lastIndex = word.lastIndexOf(element)
+// 		if (lastIndex == index) {
+// 			unique += "(";
+// 		} else {
+// 			unique += ")";
+// 		}
+// 	}
+// 	return unique;
+// }
+
+// console.log(duplicateEncode("drerein"));
+
+function alphabetPosition(text) {
+	const alfabet = [
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+		"f",
+		"g",
+		"h",
+		"i",
+		"j",
+		"k",
+		"l",
+		"m",
+		"n",
+		"o",
+		"p",
+		"q",
+		"r",
+		"s",
+		"t",
+		"u",
+		"v",
+		"w",
+		"x",
+		"y",
+		"z",
+	];
+	const textArray = text.match(/[A-Za-z]/gi);
+	if (textArray)
+		return textArray
+			.join("")
+			.replaceAll(/[A-Za-z]/gi, (n) =>
+				/[A-Za-z]/g.test(n) ? alfabet.indexOf(n.toLowerCase()) + 1 + " " : ""
+			)
+			.trim();
+	else return "";
+}
+
+console.log(alphabetPosition("The sunset sets at twelve o' clock."));
+("20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11");
