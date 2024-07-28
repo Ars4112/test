@@ -1155,5 +1155,203 @@ function alphabetPosition(text) {
 	else return "";
 }
 
-console.log(alphabetPosition("The sunset sets at twelve o' clock."));
-("20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11");
+// console.log(alphabetPosition("The sunset sets at twelve o' clock."));
+// ("20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11");
+let number = 83;
+if (number > 0) {
+	let number = 11;
+	number++;
+}
+const getNumber = (number) => {
+	number *= 10;
+	return number;
+};
+const bigValue = getNumber("number") || number;
+
+// console.log(bigValue);
+
+function add(a, b) {
+	const num1Arr = a.split("");
+	const num2Arr = b.split("");
+
+	const maxLength = Math.max(num1Arr.length, num2Arr.length);
+	for (let i = num1Arr.length; i < maxLength; i++) {
+		num1Arr.unshift("0");
+	}
+	for (let i = num2Arr.length; i < maxLength; i++) {
+		num2Arr.unshift("0");
+	}
+
+	let carry = 0;
+	let resultArr = [];
+	for (let i = maxLength - 1; i >= 0; i--) {
+		let sum = parseInt(num1Arr[i]) + parseInt(num2Arr[i]) + carry;
+		carry = Math.floor(sum / 10);
+		resultArr.unshift(sum % 10);
+	}
+
+	if (carry > 0) {
+		resultArr.unshift(carry);
+	}
+
+	return resultArr.join("");
+}
+
+// console.log(add("63829983432984289347293874", "90938498237058927340892374089"));
+// console.log(add("123", "321"));
+
+function removeChar(str) {
+	return str.replaceAll(/^\w|\w$/gi, "");
+}
+
+// console.log(removeChar('place'));
+
+function squareSum(numbers) {
+	let result = 0;
+	numbers.forEach((i) => {
+		result += i ** 2;
+	});
+	return result;
+}
+
+// console.log(squareSum([1, 2]));
+
+function findShort(s) {
+	return Math.min(...s.split(" ").map((i) => i.length));
+}
+
+// console.log(findShort("Let's travel abroad shall we"));
+
+function repeatStr(n, s) {
+	return s.repeat(n);
+}
+
+// console.log(repeatStr(3, "*"));
+
+function dnaStrand(dna) {
+	return dna
+		.split("")
+		.map((i) => {
+			if (i === "G") return "C";
+			if (i === "A") return "T";
+			if (i === "C") return "G";
+			if (i === "T") return "A";
+		})
+		.join("");
+}
+
+// console.log(dnaStrand("GTAT"));
+
+function persistence(num) {
+	debugger;
+	let count = 0;
+
+	let numArray = String(num).split("");
+	let num2;
+
+	while (numArray.length !== 1) {
+		num2 = numArray.reduce((acc, item) => {
+			return acc * item;
+		});
+		numArray = String(num2).split("");
+		++count;
+	}
+
+	return count;
+}
+
+// console.log(persistence(39));
+
+function maskify(cc) {
+	const array = cc.split("");
+	for (let i = array.length - 5; i >= 0; i--) {
+		array[i] = "#";
+	}
+	return array.join("");
+}
+
+// console.log(maskify("45555"));
+
+function toCamelCase(str) {
+	const words = str.match(/[A-Za-z]+/gi);
+	if (!words) return "";
+	for (let i = 1; i < words.length; i++) {
+		words[i] = words[i].slice(0, 1).toUpperCase() + words[i].slice(1);
+	}
+
+	return words.join("");
+}
+
+// console.log(toCamelCase("the_stealth_warrior"));
+
+const summation = function (num) {
+	let result = 0;
+	for (let i = 1; i <= num; i++) {
+		result += i;
+	}
+	return result;
+};
+
+// console.log(summation(8));
+
+function narcissistic(value) {
+	const numArray = String(value).split("");
+	const result = numArray
+		.map((i) => i ** numArray.length)
+		.reduce((acc, item) => acc + item);
+	return result === value;
+}
+
+// console.log(narcissistic());
+
+function tribonacci(signature, n) {
+	if (signature.length >= n) signature.length = n;
+	else
+		for (let i = 0, sum = 0; i < signature.length; i++) {
+			if (signature.length === n) break;
+			sum = signature[i] + signature[i + 1] + signature[i + 2];
+			signature.push(sum);
+		}
+	return signature;
+}
+
+// console.log(tribonacci([0,0,0], 1));
+
+function isPangram(string) {
+	const alfabet = [
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+		"f",
+		"g",
+		"h",
+		"i",
+		"j",
+		"k",
+		"l",
+		"m",
+		"n",
+		"o",
+		"p",
+		"q",
+		"r",
+		"s",
+		"t",
+		"u",
+		"v",
+		"w",
+		"x",
+		"y",
+		"z",
+	];
+	const strArray = string.toLowerCase().match(/[a-z]/gi)
+	let result
+	if(strArray) {
+		result =  alfabet.join("").replaceAll(/[a-z]/gi, (n)=> strArray.includes(n) ? "" : n).trim()
+	}
+	return result.length === 0
+}
+
+console.log(isPangram('Cwm fjord bank glyphs vext quiz'));
