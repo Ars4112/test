@@ -1346,12 +1346,126 @@ function isPangram(string) {
 		"y",
 		"z",
 	];
-	const strArray = string.toLowerCase().match(/[a-z]/gi)
-	let result
-	if(strArray) {
-		result =  alfabet.join("").replaceAll(/[a-z]/gi, (n)=> strArray.includes(n) ? "" : n).trim()
+	const strArray = string.toLowerCase().match(/[a-z]/gi);
+	let result;
+	if (strArray) {
+		result = alfabet
+			.join("")
+			.replaceAll(/[a-z]/gi, (n) => (strArray.includes(n) ? "" : n))
+			.trim();
 	}
-	return result.length === 0
+	return result.length === 0;
 }
 
-console.log(isPangram('Cwm fjord bank glyphs vext quiz'));
+// console.log(isPangram('Cwm fjord bank glyphs vext quiz'));
+
+const fn = () => {
+	const numbers = [11, 49, 42, 76];
+	const mapFunction = (el, index) => el * index;
+	const mappedArray = numbers.map(mapFunction);
+	const myNumber = mappedArray[0] && mappedArray[mappedArray.length - 1];
+	const bigCount = 62 + myNumber;
+
+	return bigCount;
+};
+
+// console.log(fn());
+
+function digPow(n, p) {
+	const num = Array.from(String(n), Number);
+	let sum = 0;
+	for (let i = 0, a = p; i < num.length; i++) {
+		sum += num[i] ** a;
+		a++;
+	}
+
+	return sum % n ? -1 : sum / n;
+}
+
+// console.log(digPow(89, 1));
+
+function noSpace(x) {
+	return x.replaceAll(/\s/g, "");
+}
+
+// console.log(noSpace('8 j 8   mBliB8g  imjB8B8  jl  B'));
+
+function sumTwoSmallestNumbers(numbers) {
+	numbers.sort((a, b) => a - b);
+	return numbers[0] + numbers[1];
+}
+
+// console.log(sumTwoSmallestNumbers([19, 5, 42, 2, 77]));
+
+function countSheeps(sheep) {
+	return sheep.reduce((acc, item) => {
+		if (item) ++acc;
+		return acc;
+	}, 0);
+}
+
+// console.log(countSheeps([undefined, null, false, true, true, false, null, undefined]));
+
+function getSum(a, b) {
+	if (a === b) return a;
+	if (a > b) {
+		[a, b] = [b, a];
+	}
+	let sum = 0;
+	for (let i = a; i <= b; i++) {
+		sum += i;
+	}
+	return sum;
+}
+
+// console.log(getSum(3, 2));
+
+function friend(friends) {
+	return friends.filter((i) => /[a-z]/gi.test(i) && i.length === 4);
+}
+
+// console.log(friend(["Ryan", "Kieran", "Mark"]));
+
+// function longest(s1, s2) {
+// 	const alfabet = [
+// 		"a",
+// 		"b",
+// 		"c",
+// 		"d",
+// 		"e",
+// 		"f",
+// 		"g",
+// 		"h",
+// 		"i",
+// 		"j",
+// 		"k",
+// 		"l",
+// 		"m",
+// 		"n",
+// 		"o",
+// 		"p",
+// 		"q",
+// 		"r",
+// 		"s",
+// 		"t",
+// 		"u",
+// 		"v",
+// 		"w",
+// 		"x",
+// 		"y",
+// 		"z",
+// 	];
+// 	const strArray = s1 + s2.toLowerCase().match(/[a-z]/gi);
+// 	return alfabet
+// 			.join("")
+// 			.replaceAll(/[a-z]/gi, (n) => (strArray.includes(n) ? n : ""))
+// 			.trim();
+
+// }
+
+function longest(s1, s2) {
+	return [...new Set(s1 + s2)].sort().join("");
+}
+
+// console.log(longest("aretheyhere", "yestheyarehere"));
+// ("aehrsty");
