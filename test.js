@@ -1157,16 +1157,16 @@ function alphabetPosition(text) {
 
 // console.log(alphabetPosition("The sunset sets at twelve o' clock."));
 // ("20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11");
-let number = 83;
-if (number > 0) {
-	let number = 11;
-	number++;
-}
-const getNumber = (number) => {
-	number *= 10;
-	return number;
-};
-const bigValue = getNumber("number") || number;
+// let number = 83;
+// if (number > 0) {
+// 	let number = 11;
+// 	number++;
+// }
+// const getNumber = (number) => {
+// 	number *= 10;
+// 	return number;
+// };
+// const bigValue = getNumber("number") || number;
 
 // console.log(bigValue);
 
@@ -1469,3 +1469,8 @@ function longest(s1, s2) {
 
 // console.log(longest("aretheyhere", "yestheyarehere"));
 // ("aehrsty");
+const myFunction = (a, b = 3) => a + b;
+const result = myFunction(346, undefined) % 2
+const winner = result ? "Leonid" : "Natali"
+
+console.log(winner);
