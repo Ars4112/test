@@ -1,132 +1,64 @@
-const calorieCounter = document.getElementById("calorie-counter");
-const budgetNumberInput = document.getElementById("budget");
-const entryDropdown = document.getElementById("entry-dropdown");
-const addEntryButton = document.getElementById("add-entry");
-const clearButton = document.getElementById("clear");
-const output = document.getElementById("output");
-let isError = false;
-
-function cleanInputString(str) {
-	const regex = /[+-\s]/;
-	return str.replace(regex, "");
-}
-
-function isInvalidInput(str) {
-	const regex = /\d+e\d+/i;
-	return str.match(regex);
-}
-
-function addEntry() {
-	const targetInputContainer = document.querySelector(
-		`#${entryDropdown.value} .input-container`
-	);
-	const entryNumber =
-		targetInputContainer.querySelectorAll('input[type="text"]').length + 1;
-	const HTMLString = `
-        <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
-        <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
-        <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
-        <input type="number" min="0" id="${entryDropdown.value}-${entryNumber}-calories" placeholder="Calories" />`;
-
-	targetInputContainer.insertAdjacentHTML("beforeend", HTMLString);
-}
-
-addEntryButton.addEventListener("click", addEntry);
-
-function getCaloriesFromInputs(list) {
-	let calories = 0;
-	for (const item of list) {
-		const currVal = cleanInputString(item.value);
-		const invalidInputMatch = isInvalidInput(currVal);
-		if (invalidInputMatch) {
-			alert(`Invalid Input: ${invalidInputMatch[0]}`);
-			isError = true;
-			return null;
-		}
-		calories += Number(currVal);
-	}
-	return calories;
-}
-
-function calculateCalories(e) {
-	e.preventDefault();
-	isError = false;
-	const breakfastNumberInputs = document.querySelectorAll(
-		"#breakfast input[type=number]"
-	);
-	const lunchNumberInputs = document.querySelectorAll(
-		"#lunch input[type=number]"
-	);
-	const dinnerNumberInputs = document.querySelectorAll(
-		"#dinner input[type=number]"
-	);
-	const snacksNumberInputs = document.querySelectorAll(
-		"#snacks input[type=number]"
-	);
-	const exerciseNumberInputs = document.querySelectorAll(
-		"#exercise input[type=number]"
-	);
-
-	const breakfastCalories = getCaloriesFromInputs(breakfastNumberInputs);
-	const lunchCalories = getCaloriesFromInputs(lunchNumberInputs);
-	const dinnerCalories = getCaloriesFromInputs(dinnerNumberInputs);
-	const snacksCalories = getCaloriesFromInputs(snacksNumberInputs);
-	const exerciseCalories = getCaloriesFromInputs(exerciseNumberInputs);
-
-	const budgetCalories = getCaloriesFromInputs([budgetNumberInput]);
-
-	if (isError) {
-		return;
-	}
-	const consumedCalories =
-		breakfastCalories +
-		lunchCalories +
-		dinnerCalories +
-		snacksCalories +
-		exerciseCalories;
-
-	const remainingCalories =
-		budgetCalories - consumedCalories + exerciseCalories;
-
-	const surplusOrDeficit = remainingCalories < 0 ? "Surplus" : "Deficit";
-
-	output.innerHTML = `
-  <span class="${surplusOrDeficit.toLowerCase()}">${Math.abs(
-		remainingCalories
-	)} Calorie ${surplusOrDeficit}</span>
-  <hr/>
-  <p>${budgetCalories} Calories Budgeted</p>
-  <p>${consumedCalories} Calories Consumed</p>
- <p>${exerciseCalories} Calories Burned</p>
-  `;
-
-	output.classList.remove("hide");
-}
-
-calorieCounter.addEventListener("submit", calculateCalories);
-
-function clearForm() {
-	const inputContainers = Array.from(
-		document.querySelectorAll(".input-container")
-	);
-
-	for (const container of inputContainers) {
-		container.innerHTML = "";
-	}
-
-	budgetNumberInput.value = "";
-
-	output.innerText = "";
-
-	output.classList.add("hide");
-}
-
-clearButton.addEventListener("click", clearForm)
+const playerScoreSpanElement = document.getElementById("player-score");
+const computerScoreSpanElement = document.getElementById("computer-score");
+const roundResultsMsg = document.getElementById("results-msg");
+const winnerMsgElement = document.getElementById("winner-msg");
+const optionsContainer = document.querySelector(".options-container");
+const resetGameBtn = document.getElementById("reset-game-btn");
+let playerScore = 0;
+let computerScore = 0;
 
 function getRandomComputerResult() {
 	const options = ["Rock", "Paper", "Scissors"];
-  return options[Math.floor(Math.random(2))]
-  }
-  console.log(getRandomComputerResult());
+	return options[Math.floor(Math.random() * options.length)];
+}
 
-  console.log(Math.floor(Math.random()*10));
+function hasPlayerWonTheRound(player, computer) {
+	if (player === "Rock" && computer === "Scissors") return true;
+	if (player === "Scissors" && computer === "Paper") return true;
+	if (player === "Paper" && computer === "Rock") return true;
+
+	return false;
+}
+
+function getRoundResults(userOption) {
+	const computerResult = getRandomComputerResult();
+	if (userOption === computerResult) {
+		return `It's a tie! Both chose ${userOption}`;
+	}
+	if (hasPlayerWonTheRound(userOption, computerResult)) {
+		++playerScore;
+		return `Player wins! ${userOption} beats ${computerResult}`;
+	} else {
+		++computerScore;
+		return `Computer wins! ${computerResult} beats ${userOption}`;
+	}
+}
+
+function showResults(userOption) {
+	roundResultsMsg.innerText = getRoundResults(userOption);
+	computerScoreSpanElement.innerText = computerScore;
+	playerScoreSpanElement.innerText = playerScore;
+
+	if (playerScore === 3)
+		winnerMsgElement.innerText = "Player has won the game!";
+	if (computerScore === 3)
+		winnerMsgElement.innerText = "Computer has won the game!";
+
+	if (playerScore === 3 || computerScore === 3) {
+		resetGameBtn.style.display = "block";
+		optionsContainer.style.display = "none";
+	}
+}
+
+function resetGame() {
+	computerScore = 0;
+	playerScore = 0;
+	computerScoreSpanElement.innerText = "";
+	playerScoreSpanElement.innerText = "";
+	resetGameBtn.style.display = "none";
+	optionsContainer.style.display = "block";
+	winnerMsgElement.innerText = "";
+	roundResultsMsg.innerText = "";
+}
+
+showResults("Rock");
