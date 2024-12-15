@@ -337,13 +337,7 @@ function removeElement(nums, val) {
 
 function generateHashtag(str) {
 	const heshStr = str.split(" ").filter((i) => i !== "");
-	if (
-		str === "" ||
-		heshStr.length === 0 ||
-		heshStr.join("").length >= 140 ||
-		str === "#"
-	)
-		return false;
+	if (str === "" || heshStr.length === 0 || heshStr.join("").length >= 140 || str === "#") return false;
 	const result = heshStr
 		.map((i) => {
 			const firsLetter = i.slice(0, 1).toUpperCase();
@@ -398,10 +392,7 @@ function rot13(message) {
 			alfabet.forEach((j, index) => {
 				if (i.toLowerCase() === j) {
 					if (index + 13 > alfabet.length - 1) {
-						if (upperCase)
-							result.push(
-								alfabet[index + 12 - (alfabet.length - 1)].toUpperCase()
-							);
+						if (upperCase) result.push(alfabet[index + 12 - (alfabet.length - 1)].toUpperCase());
 						else result.push(alfabet[index + 12 - (alfabet.length - 1)]);
 					} else if (upperCase) result.push(alfabet[index + 13].toUpperCase());
 					else result.push(alfabet[index + 13]);
@@ -617,11 +608,7 @@ function invert(array) {
 // console.log(invert([1, -2, 3, 4, 5]));
 
 function differenceInAges(ages) {
-	return [
-		Math.max(...ages),
-		Math.min(...ages),
-		Math.max(...ages) - Math.min(...ages),
-	];
+	return [Math.max(...ages), Math.min(...ages), Math.max(...ages) - Math.min(...ages)];
 }
 
 // console.log(differenceInAges([82, 15, 6, 38, 35]));
@@ -676,11 +663,7 @@ function getPlanetName(id) {
 //   console.log(getPlanetName(5));
 
 function divCon(x) {
-	return x.reduce(
-		(acc, item) =>
-			typeof item === "string" ? acc - Number(item) : (acc += item),
-		0
-	);
+	return x.reduce((acc, item) => (typeof item === "string" ? acc - Number(item) : (acc += item)), 0);
 }
 
 // console.log(divCon(["7", 1]));
@@ -693,8 +676,7 @@ class List {
 	}
 
 	add(item) {
-		if (typeof item !== this.type)
-			return `This item is not of type: ${this.type}`;
+		if (typeof item !== this.type) return `This item is not of type: ${this.type}`;
 
 		this.items.push(item);
 		this.count++;
@@ -720,19 +702,9 @@ function correctTail(body, tail) {
 // console.log(correctTail("Fox", "x"));
 
 function howManyDalmations(number) {
-	var dogs = [
-		"Hardly any",
-		"More than a handful!",
-		"Woah that's a lot of dogs!",
-		"101 DALMATIONS!!!",
-	];
+	var dogs = ["Hardly any", "More than a handful!", "Woah that's a lot of dogs!", "101 DALMATIONS!!!"];
 
-	var respond =
-		number <= 10
-			? dogs[0]
-			: number <= 50
-			? dogs[1]
-			: (number = 101 ? dogs[3] : dogs[2]);
+	var respond = number <= 10 ? dogs[0] : number <= 50 ? dogs[1] : (number = 101 ? dogs[3] : dogs[2]);
 
 	return respond;
 }
@@ -930,18 +902,9 @@ function likes(names) {
 	if (names.length === 0) return "no one likes this";
 	if (names.length === 1) return names[0] + " likes this";
 	if (names.length === 2) return names[0] + " and " + names[1] + " like this";
-	if (names.length === 3)
-		return names[0] + ", " + names[1] + " and " + names[2] + " like this";
+	if (names.length === 3) return names[0] + ", " + names[1] + " and " + names[2] + " like this";
 	if (names.length > 3)
-		return (
-			names[0] +
-			", " +
-			names[1] +
-			" and " +
-			String(names.length - 2) +
-			" others " +
-			" like this"
-		);
+		return names[0] + ", " + names[1] + " and " + String(names.length - 2) + " others " + " like this";
 }
 
 // console.log(likes(["Peter", "fghfghg", "mnmmnnbmnb", "hjh"]));
@@ -961,9 +924,7 @@ function digitalRoot(n) {
 // console.log(digitalRoot(6));
 
 function highAndLow(numbers) {
-	return (
-		Math.max(...numbers.split(" ")) + " " + Math.min(...numbers.split(" "))
-	);
+	return Math.max(...numbers.split(" ")) + " " + Math.min(...numbers.split(" "));
 }
 
 // console.log(highAndLow("2 6 9"));
@@ -1085,9 +1046,7 @@ function duplicateEncode(word) {
 		return acc;
 	}, {});
 
-	const repeatLetterArray = Object.keys(countLetter).filter(
-		(i) => countLetter[i] > 1
-	);
+	const repeatLetterArray = Object.keys(countLetter).filter((i) => countLetter[i] > 1);
 
 	return wordArray.reduce((acc, item) => {
 		if (repeatLetterArray.includes(item)) acc += ")";
@@ -1148,9 +1107,7 @@ function alphabetPosition(text) {
 	if (textArray)
 		return textArray
 			.join("")
-			.replaceAll(/[A-Za-z]/gi, (n) =>
-				/[A-Za-z]/g.test(n) ? alfabet.indexOf(n.toLowerCase()) + 1 + " " : ""
-			)
+			.replaceAll(/[A-Za-z]/gi, (n) => (/[A-Za-z]/g.test(n) ? alfabet.indexOf(n.toLowerCase()) + 1 + " " : ""))
 			.trim();
 	else return "";
 }
@@ -1296,9 +1253,7 @@ const summation = function (num) {
 
 function narcissistic(value) {
 	const numArray = String(value).split("");
-	const result = numArray
-		.map((i) => i ** numArray.length)
-		.reduce((acc, item) => acc + item);
+	const result = numArray.map((i) => i ** numArray.length).reduce((acc, item) => acc + item);
 	return result === value;
 }
 
@@ -1470,7 +1425,101 @@ function longest(s1, s2) {
 // console.log(longest("aretheyhere", "yestheyarehere"));
 // ("aehrsty");
 const myFunction = (a, b = 3) => a + b;
-const result = myFunction(346, undefined) % 2
-const winner = result ? "Leonid" : "Natali"
+const result = myFunction(346, undefined) % 2;
+const winner = result ? "Leonid" : "Natali";
 
-console.log(winner);
+// console.log(winner);
+
+// const button = document.querySelector("button");
+// const audio = new Audio("Swoosh.mp3");
+// button.addEventListener("click", () => {
+// 	audio.play();
+// });
+
+// audio.addEventListener("canplaythrough", () => {
+
+// });
+
+const arr = [1, 6, 3, 9, 8, 6, 5];
+
+const findLargestNumber = (arr) => {
+	let largestNumber = arr[0];
+
+	for (let i = 1; i < arr.length; i++) {
+		if (largestNumber < arr[i]) largestNumber = arr[i];
+	}
+	return largestNumber;
+};
+
+// console.log(findLargestNumber(arr));
+
+const sortArrayInDescendingOrder = (arr) => {
+	for (let i = 0; i < arr.length - 1; i++) {
+		for (let j = 0; j < arr.length - 1 - i; j++) {
+			if (arr[j] < arr[j + 1]) {
+				const temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+
+	return arr;
+};
+// sortArrayInDescendingOrder(arr);
+// console.log(sortArrayInDescendingOrder(arr));
+
+const removingDuplicates = (arr) => {
+	let newArray = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (!newArray.includes(arr[i])) {
+			newArray.push(arr[i]);
+		}
+	}
+
+	return newArray;
+};
+
+// console.log(removingDuplicates(arr));
+
+const countNumberOfElements = (arr) => {
+	const obj = {};
+
+	for (let i = 0; i < arr.length; i++) {
+		if (!obj[arr[i]]) obj[arr[i]] = 1;
+		else obj[arr[i]]++;
+	}
+
+	return obj;
+};
+
+// console.log(countNumberOfElements(arr));
+
+const changeOrderArray = (num1, num2, arr) => {
+	for (let i = 0; i < arr.length; i++) {
+		[arr[num1], arr[num2]] = [arr[num2], arr[num1]];
+	}
+	return arr;
+};
+
+// console.log(changeOrderArray(1, 4, arr));
+
+const sortArray = (arr) => {
+	const obj = {};
+	const sortArray = []
+
+	for (let i = 0; i < arr.length; i++) {
+		if (!obj[arr[i]]) obj[arr[i]] = 1;
+		else obj[arr[i]]++;
+	}
+	for (const element in obj) {
+		sortArray.push(+element)
+		if(obj[element] > 1) sortArray.push(+element)
+	}
+
+	return sortArray
+};
+
+console.log(sortArray(arr));
+
+// [1, 6, 3, 9, 8, 6, 5]
