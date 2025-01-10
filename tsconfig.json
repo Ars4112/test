@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "es6", // или другой целевой стандарт
+      "module": "commonjs",
+      "outDir": "./dist", // папка для скомпилированных файлов
+      "strict": true
+    },
+    "include": ["*.ts"], // включаем все .ts файлы в проект
+    "exclude": ["node_modules"] // исключаем node_modules
+  }
